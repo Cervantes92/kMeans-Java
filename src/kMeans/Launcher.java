@@ -25,6 +25,13 @@ public class Launcher {
 		for(int i = 0; i < tokens.length; i++) {
 			System.out.println(i + ": " + tokens[i]);
 		}
+		
+		System.out.println("Parsing string array into doubles");
+		double[] points = new double[tokens.length];
+		for(int i = 0; i < tokens.length; i++) {
+			points[i] = Parser.parseDouble(tokens[i]);
+			System.out.println(i + ": " + points[i]);
+		}
 	}
 
 }
