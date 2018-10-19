@@ -58,6 +58,7 @@ public class Parser {
 		String[] tokens = str.split("[,//n]+");
 		return tokens;
 	}
+	
 	public static int countLines(String str) {
 		String[] lines = str.split("/r/n|/r|/n");
 		return lines.length;

@@ -9,29 +9,22 @@ public class Launcher {
 	public static void main(String[] args) {
 		String centers = Parser.loadFileAsString("src/cluster-samples/cent.csv");
 		
-		//ArrayList<String> means = new ArrayList<>();
-		//means = Parser.loadFileAsArrayList("src/cluster-samples/cent.csv");
-		
-		System.out.println("Raw string input:");
-		System.out.println(centers);
-		
-		//System.out.println("ArrayList output");
-		//System.out.println(means);
-		
+		//SANITY CHECK
+		//System.out.println("Raw string input:");
+		//System.out.println(centers);
 		
 		String[] tokens = Parser.stringSplitsCSV(centers);
 		
-		System.out.println("Tokens after splitting: ");
-		for(int i = 0; i < tokens.length; i++) {
-			System.out.println(i + ": " + tokens[i]);
-		}
+		//Parse string array into a doubles array
+		double[][] points = new double[2][tokens.length / 2];
 		
-		System.out.println("Parsing string array into doubles");
-		double[] points = new double[tokens.length];
 		for(int i = 0; i < tokens.length; i++) {
-			points[i] = Parser.parseDouble(tokens[i]);
-			System.out.println(i + ": " + points[i]);
+			if(i % 2 == 0) {
+				points[0][i] = Parser.parseDouble(tokens[i]);
+			}
+			else if(i % 2 != 0) {
+				points[1][i] = Parser.parseDouble(tokens[i]);
+			}
 		}
 	}
-
 }
