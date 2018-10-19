@@ -16,14 +16,16 @@ public class Launcher {
 		String[] tokens = Parser.stringSplitsCSV(centers);
 		
 		//Parse string array into a doubles array
-		double[][] points = new double[2][tokens.length / 2];
-		
+		double[][] points = new double[2][tokens.length];
+		System.out.println("i\tx\t\t\ty");
 		for(int i = 0; i < tokens.length; i++) {
 			if(i % 2 == 0) {
 				points[0][i] = Parser.parseDouble(tokens[i]);
+				System.out.print(i + points[0][i] + "\t");
 			}
 			else if(i % 2 != 0) {
 				points[1][i] = Parser.parseDouble(tokens[i]);
+				System.out.println(points[1][i]);
 			}
 		}
 	}
