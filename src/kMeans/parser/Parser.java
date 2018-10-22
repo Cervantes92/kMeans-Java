@@ -24,7 +24,7 @@ public class Parser {
 		return builder.toString();
 	}
 	
-	//In case of regex failure
+	//In case of another regex bug, parse to arrayList.
 	public static ArrayList<String> loadFileAsArrayList(String path) {
 		ArrayList<String> result = new ArrayList<>();
 		String line;
