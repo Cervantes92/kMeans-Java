@@ -1,6 +1,6 @@
 package kMeans.kMethods;
 
-import java.util.ArrayList;
+import kMeans.fieldMetrics.fieldMetrics;
 
 public class kMethods {
 	
@@ -9,13 +9,17 @@ public class kMethods {
 	 * point in the cluster field and the second represents the index of the
 	 * center given point belongs to.
 	 */
-	public static int[][] kMeans(Double[][] clusterField, int numberOfClusters, double stability) {
+	public static int[][] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
+		fieldMetrics metrics = new fieldMetrics(clusterField);
 		
-		//Calculate size of cluster field.
-		double minx = 0, miny = 0, maxx = 10, maxy = 10;
+		//Set size of cluster field.
+		double minx = metrics.getMinXValue(), miny = metrics.getMinYValue(), 
+				maxx = metrics.getMaxXValue(), maxy = metrics.getMaxYValue();
 		
-		int[][] relations = new int[2][clusterField[0].length];
+		//relation array expressing which point is related to what cluster
+		int[][] relations = new int[clusterField.length][clusterField[0].length];
 		
+		double[][] centers;
 		double delta;
 		
 		do {
