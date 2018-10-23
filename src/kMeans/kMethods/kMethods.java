@@ -11,6 +11,10 @@ public class kMethods {
 	public static int[] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
 		fieldMetrics metrics = new fieldMetrics(clusterField);
 		
+		//Declare loop indexes to work around nested loop index declaration issue. How could this go wrong?
+		int i;
+		int j;
+		
 		//Set size of cluster field.
 		double minx = metrics.getMinXValue(), miny = metrics.getMinYValue(), 
 				maxx = metrics.getMaxXValue(), maxy = metrics.getMaxYValue();
@@ -26,7 +30,7 @@ public class kMethods {
 		
 		//Draw a line of potential centers across the field
 		double m = ((maxx - minx) / (maxy - miny));
-		for(int i = 0; i < centers[0].length; i++) {
+		for(i = 0; i < centers[0].length; i++) {
 			centers[0][i] = m * i / centers.length + minx;
 			centers[1][i] = m * i / centers.length + miny;
 		}
@@ -56,8 +60,8 @@ public class kMethods {
 		do {
 			
 			//Assign each point it's nearest center.
-			for(int i = 0; i < clusterField[0].length; i++) {
-				for(int j = 0; j < centers[0].length; j++) {
+			for(i = 0; i < clusterField[0].length; i++) {
+				for(j = 0; j < centers[0].length; j++) {
 					
 					//calculate the distance between each point and each center;
 					distances[i][j] = calculateDistance(clusterField[0][i],clusterField[1][i],centers[0][j],centers[1][j]);
@@ -70,7 +74,7 @@ public class kMethods {
 				}
 				
 				//Set the new centers. IDE doesn't recognize that j has already been declared.
-				for(int j = 0; j < centers[0].length; j++) {
+				for(j = 0; j < centers[0].length; j++) {
 					sumx = 0;
 					sumy = 0;
 					num = 0;
