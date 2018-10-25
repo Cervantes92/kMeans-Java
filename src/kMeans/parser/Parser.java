@@ -54,9 +54,9 @@ public class Parser {
 	}
 	
 	//Parse string array into 2d doubles array
-	public static double[][] parseString(String[] tokens) {
-		double[][] points = new double[2][tokens.length];
-		for(int i = 0; i < tokens.length; i++) {
+	public static double[][] parseString(String[] tokens, int dimensions) {
+		double[][] points = new double[2][tokens.length * dimensions];
+		for(int i = 0; i < tokens.length / dimensions; i++) {
 			if(i % 2 == 0) {
 				points[0][i] = Parser.parseDouble(tokens[i]);
 			}

@@ -16,12 +16,27 @@ public class Launcher {
 		//Break String into lines
 		String[] tokens = Parser.stringSplitsCSV(centers);
 		
+		//SANITY CHECK
+		System.out.println("String input: ");
+		for(int m = 0; m < tokens.length; m++) {
+			System.out.println(tokens[m]);
+		}
+		
 		//Parse string array into a doubles array
-		double[][] points = Parser.parseString(tokens);
+		double[][] points = Parser.parseString(tokens, 2);
+		
+		//SANITY CHECK
+		System.out.println("Input array: ");
+		for(int i = 0; i < points[0].length; i++) {
+			System.out.println(points[0][i] + "\t" + points[1][i]);
+		}
+		
+		//Check length of array
+		System.out.println("Array length: " + points[0].length);
 		
 		//Execute kMeans algorithm
 		double[][] centerPoints = new double[2][points[0].length];
-		centerPoints = kMethods.kMeans(points, 3, 0.1);
+		centerPoints = kMethods.kMeans(points, 3, 0.01);
 		
 		//Print out results
 		System.out.println("i\t\tx\t\ty");

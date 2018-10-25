@@ -17,6 +17,7 @@ public class kMethods {
 		//Set size of cluster field.
 		double minx = metrics.getMinXValue(), miny = metrics.getMinYValue(), 
 				maxx = metrics.getMaxXValue(), maxy = metrics.getMaxYValue();
+		System.out.println("minX: " + minx + "\nmaxX: " + maxx + "\nminY: " + miny + "\nmaxY: " + maxy);
 				
 		//Array to store the change in the center.
 		double[] delta = new double[numberOfClusters];
@@ -30,9 +31,12 @@ public class kMethods {
 		//Draw a line of potential centers across the field
 		double m = ((maxx - minx) / (maxy - miny));
 		for(i = 0; i < centers[0].length; i++) {
-			centers[0][i] = m * i / centers.length + minx;
-			centers[1][i] = m * i / centers.length + miny;
+			centers[0][i] = i; //m * i / centers[0].length + minx;
+			centers[1][i] = i; //m * i / centers[0].length + miny;
 		}
+		
+		//DEGUG
+		System.out.println("The last value is: " + centers[1][centers[0].length - 1]);
 		
 		//Store previous centers to check for stability.
 		double[][] centersOld = centers;
@@ -90,8 +94,10 @@ public class kMethods {
 					}
 					
 					//Set the new center to the average.
-					centersOld[0][j] = centers[0][j];
-					centersOld[1][j] = centers[1][j];
+					for(int thing = 0; thing < centers[0].length; thing++) {
+						centersOld[0][thing] = centers[0][thing];
+						centersOld[1][thing] = centers[1][thing];
+					}
 					
 					centers[0][j] = sumx / num;
 					centers[1][j] = sumy / num;

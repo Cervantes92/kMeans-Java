@@ -8,17 +8,18 @@ public class fieldMetrics {
 	
 	public fieldMetrics(double[][] clusterField) {
 		minXValue = clusterField[0][0];
-		minYValue = clusterField[0][0];
+		minYValue = clusterField[1][0];
 		maxXValue = clusterField[0][0];
-		maxYValue = clusterField[0][0];
+		maxYValue = clusterField[1][0];
 		
-		for(int j = 0; j < clusterField.length; j++) {
-			for(int i= 0; i < clusterField[0].length; i++) {
-				if(clusterField[j][0] > minXValue) minXValue = clusterField[j][0];
-				if(clusterField[j][0] > maxXValue) maxXValue = clusterField[j][0];
-				if(clusterField[0][i] > minYValue) minYValue = clusterField[0][i];
-				if(clusterField[0][i] > maxYValue) maxYValue = clusterField[0][i];
-			}
+		//For a 2d cluster field
+		for(int i= 0; i < clusterField[0].length; i++) {
+			
+			if(clusterField[0][i] < minXValue) minXValue = clusterField[0][i];
+			if(clusterField[0][i] > maxXValue) maxXValue = clusterField[0][i];
+			
+			if(clusterField[1][i] < minYValue) minYValue = clusterField[1][i];
+			if(clusterField[1][i] > maxYValue) maxYValue = clusterField[1][i];
 		}
 	}
 
