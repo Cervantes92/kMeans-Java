@@ -5,10 +5,9 @@ import kMeans.fieldMetrics.fieldMetrics;
 public class kMethods {
 	
 	/*
-	 * Here we will express the relations as an array which indexes which point is closest to which
-	 * center.
+	 * 
 	 */
-	public static int[] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
+	public static double[][] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
 		fieldMetrics metrics = new fieldMetrics(clusterField);
 		
 		//Declare loop indexes to work around nested loop index declaration issue. How could this go wrong?
@@ -45,8 +44,8 @@ public class kMethods {
 		double[] smallestDistance = new double[clusterField[0].length];
 		
 		//TODO: Check null in algorithm's main loop. IDE bug prevents checking for null values in a doubles array.
-		for(int i = 0; i < clusterField[0].length; i++) {
-			for(int j = 0; j < centers[0].length; j++) {
+		for(i = 0; i < clusterField[0].length; i++) {
+			for(j = 0; j < centers[0].length; j++) {
 				smallestDistance[i] = calculateDistance(clusterField[0][i],clusterField[1][i],centers[0][j],centers[1][j]);
 			}
 		}
@@ -107,7 +106,7 @@ public class kMethods {
 		while(sumArray(delta) > stability);
 		
 		
-		return relations;
+		return centers;
 	}
 	
 	private static double calculateDistance(double x1, double y1, double x2, double y2) {
