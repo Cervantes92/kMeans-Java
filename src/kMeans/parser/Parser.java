@@ -55,7 +55,7 @@ public class Parser {
 	
 	//Parse string array into 2d doubles array
 	public static double[][] parseString(String[] tokens, int dimensions) {
-		double[][] points = new double[2][tokens.length * dimensions];
+		double[][] points = new double[2][tokens.length];
 		for(int i = 0; i < tokens.length / dimensions; i++) {
 			if(i % 2 == 0) {
 				points[0][i] = Parser.parseDouble(tokens[i]);
@@ -65,6 +65,14 @@ public class Parser {
 			}
 		}
 		return points;
+	}
+	
+	public static double sciNote(String str) {
+		double number = 0;
+		//Parse out sci note
+		
+		
+		return number;
 	}
 	
 	public static String[] stringSplitsCSV(String str) {
