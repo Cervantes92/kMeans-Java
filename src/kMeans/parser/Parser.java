@@ -24,7 +24,6 @@ public class Parser {
 		return builder.toString();
 	}
 	
-	//In case of another regex bug, parse to arrayList.
 	public static ArrayList<String> loadFileAsArrayList(String path) {
 		ArrayList<String> result = new ArrayList<>();
 		String line;
@@ -55,18 +54,19 @@ public class Parser {
 	
 	//Parse string array into 2d doubles array
 	public static double[][] parseString(String[] tokens, int dimensions) {
-		double[][] points = new double[2][tokens.length];
-		for(int i = 0; i < tokens.length / dimensions; i++) {
-			if(i % 2 == 0) {
-				points[0][i] = Parser.parseDouble(tokens[i]);
-			}
-			else if(i % 2 != 0) {
-				points[1][i] = Parser.parseDouble(tokens[i]);
+		double[][] points = new double[dimensions][tokens.length / 2];
+		double value;
+		for(int i = 0; i < tokens.length; i++) {
+			value = Parser.parseDouble(tokens[i]);
+			
+			for(int j = 0; j < tokens.length / dimensions; j++) {
+				for(int k = 0; k < dimensions; k++) {
+					points[k][j] = Parser.parseDouble(tokens[k + j * dimensions]);
+				}
 			}
 		}
 		return points;
 	}
-	
 	public static double sciNote(String str) {
 		double number = 0;
 		//Parse out sci note

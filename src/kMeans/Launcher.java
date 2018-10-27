@@ -28,7 +28,7 @@ public class Launcher {
 		double[][] points = Parser.parseString(tokens, 2);
 		
 		//SANITY CHECK
-		System.out.println("Input array: ");
+		System.out.println("Parsed numbers: ");
 		for(int i = 0; i < points[0].length; i++) {
 			System.out.println(points[0][i] + "\t" + points[1][i]);
 		}

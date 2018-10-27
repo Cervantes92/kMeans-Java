@@ -17,7 +17,7 @@ public class kMethods {
 		//Set size of cluster field.
 		double minx = metrics.getMinXValue(), miny = metrics.getMinYValue(), 
 				maxx = metrics.getMaxXValue(), maxy = metrics.getMaxYValue();
-		System.out.println("minX: " + minx + "\nmaxX: " + maxx + "\nminY: " + miny + "\nmaxY: " + maxy);
+		//System.out.println("minX: " + minx + "\nmaxX: " + maxx + "\nminY: " + miny + "\nmaxY: " + maxy);
 				
 		//Array to store the change in the center.
 		double[] delta = new double[numberOfClusters];
@@ -35,8 +35,8 @@ public class kMethods {
 			centers[1][i] = i; //m * i / centers[0].length + miny;
 		}
 		
-		//DEGUG
-		System.out.println("The last value is: " + centers[1][centers[0].length - 1]);
+		//SANITY CHECK
+		//System.out.println("The last value is: " + centers[1][centers[0].length - 1]);
 		
 		//Store previous centers to check for stability.
 		double[][] centersOld = centers;
