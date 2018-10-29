@@ -5,7 +5,7 @@ import kMeans.fieldMetrics.fieldMetrics;
 public class kMethods {
 	
 	/*
-	 * 
+	 * This is the main algorithm in kMean clusters.
 	 */
 	public static double[][] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
 		fieldMetrics metrics = new fieldMetrics(clusterField);
@@ -29,7 +29,7 @@ public class kMethods {
 		double[][] centers = new double[2][numberOfClusters];
 		
 		//Draw a line of potential centers across the field
-		double m = ((maxx - minx) / (maxy - miny));
+		//double m = ((maxx - minx) / (maxy - miny));
 		for(i = 0; i < centers[0].length; i++) {
 			centers[0][i] = i; //m * i / centers[0].length + minx;
 			centers[1][i] = i; //m * i / centers[0].length + miny;
@@ -74,6 +74,11 @@ public class kMethods {
 						smallestDistance[i] = distances[i][j];
 						relations[i] = j;
 					}
+				}
+				
+				System.out.println("Relations[pointIndex] = centerIndex: ");
+				for(i = 0; i < relations.length; i++) {
+					System.out.println(i + " : " + relations[i]);
 				}
 				
 				//Set the new centers. IDE doesn't recognize that j has already been declared.
