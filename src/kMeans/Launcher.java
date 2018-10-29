@@ -34,9 +34,6 @@ public class Launcher {
 		}
 		System.out.println();
 		
-		//Check length of array
-		System.out.println("Array length: " + points[0].length);
-		
 		//Execute kMeans algorithm
 		double[][] centerPoints = new double[2][points[0].length];
 		centerPoints = kMethods.kMeans(points, 3, 0.01);

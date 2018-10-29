@@ -5,7 +5,7 @@ import kMeans.fieldMetrics.fieldMetrics;
 public class kMethods {
 	
 	/*
-	 * This is the main algorithm in kMean clusters.
+	 * This is the main algorithm in kMeans clusters.
 	 */
 	public static double[][] kMeans(double[][] clusterField, int numberOfClusters, double stability) {
 		fieldMetrics metrics = new fieldMetrics(clusterField);
@@ -29,14 +29,12 @@ public class kMethods {
 		double[][] centers = new double[2][numberOfClusters];
 		
 		//Draw a line of potential centers across the field
-		//double m = ((maxx - minx) / (maxy - miny));
+		//TODO: Have the initial conditions scale with the cluster field space.
+		double m = ((maxx - minx) / (maxy - miny));
 		for(i = 0; i < centers[0].length; i++) {
-			centers[0][i] = i; //m * i / centers[0].length + minx;
-			centers[1][i] = i; //m * i / centers[0].length + miny;
+			centers[0][i] = m * i / centers[0].length + minx;
+			centers[1][i] = m * i / centers[0].length + miny;
 		}
-		
-		//SANITY CHECK
-		//System.out.println("The last value is: " + centers[1][centers[0].length - 1]);
 		
 		//Store previous centers to check for stability.
 		double[][] centersOld = centers;
@@ -62,12 +60,20 @@ public class kMethods {
 		//Main algorithm loop
 		do {
 			
-			//Assign each point it's nearest center.
+			/*Assign each point it's nearest center. NOTE: here is what is happening. All three potential centers are
+			 *being assigned the same point. I must implement a check to ensure that each point is only assigned one
+			 *center.
+			 */
+			
+			System.out.println("Distance calc: ");
 			for(i = 0; i < clusterField[0].length; i++) {
 				for(j = 0; j < centers[0].length; j++) {
 					
 					//calculate the distance between each point and each center;
 					distances[i][j] = calculateDistance(clusterField[0][i],clusterField[1][i],centers[0][j],centers[1][j]);
+					
+					//Diagnostics
+					System.out.println(distances[i][j]);
 					
 					//Store the index of the closest center.
 					if(distances[i][j] < smallestDistance[i]) {
@@ -76,10 +82,13 @@ public class kMethods {
 					}
 				}
 				
+				//Diagnostics
+				System.out.println();
 				System.out.println("Relations[pointIndex] = centerIndex: ");
 				for(i = 0; i < relations.length; i++) {
 					System.out.println(i + " : " + relations[i]);
 				}
+				System.out.println();
 				
 				//Set the new centers. IDE doesn't recognize that j has already been declared.
 				for(j = 0; j < centers[0].length; j++) {
