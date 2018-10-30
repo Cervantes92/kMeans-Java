@@ -9,11 +9,6 @@ public class Launcher {
 		//Load file as string
 		String centers = Parser.loadFileAsString("src/cluster-samples/cent.csv");
 		
-		//SANITY CHECK
-		System.out.println("Raw string input:");
-		System.out.println(centers);
-		System.out.println();
-		
 		//Break String into lines
 		String[] tokens = Parser.stringSplitsCSV(centers);
 		
@@ -36,7 +31,7 @@ public class Launcher {
 		
 		//Execute kMeans algorithm
 		double[][] centerPoints = new double[2][points[0].length];
-		centerPoints = kMethods.kMeans(points, 3, 0.01);
+		centerPoints = kMethods.kMeans(points, 3, 0);
 		
 		//Print out results
 		System.out.println("i\t\t\tx\t\t\ty");
