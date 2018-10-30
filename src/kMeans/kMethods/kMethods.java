@@ -55,36 +55,38 @@ public class kMethods {
 		double sumy = 0;
 		double num = 0; //Double to avoid rounding errors.
 		
+		//Loop counter;
+		int loopCounter = 0;
+		
 		//Main algorithm loop
 		do {
+			System.out.println("Iteration: " + loopCounter);
 			
 			//Assign each point it's nearest center.
-			System.out.println("Distance calc: ");
+			System.out.println("Distance calculations: ");
+			System.out.println("Point\t\tCenter\t\tDistance");
+			
 			for(i = 0; i < clusterField[0].length; i++) {
 				
 				//Diagnostics
-				System.out.println("For point: " + i);
+				System.out.print(i);
 				
 				for(j = 0; j < centers[0].length; j++) {
 					
 					//Diagnostics
-					System.out.println("in relation to center: " + j);
+					System.out.print("\t\t" + j);
 					
 					//calculate the distance between each point and each center
 					distances[i][j] = calculateDistance(clusterField[0][i],clusterField[1][i],centers[0][j],centers[1][j]);
 					
 					//Diagnostics
-					System.out.println(distances[i][j]);
+					System.out.println("\t\t" + distances[i][j]);
 					
 					//Store the index of the closest center.
 					if(distances[i][j] < smallestDistance[i]) {
 						smallestDistance[i] = distances[i][j];
 						relations[i] = j;
-						System.out.println("CHANGE!");
 					}
-					
-					//Diagnostics
-					System.out.println("The smallest distance was: " + smallestDistance[i]);
 				}
 			}
 			//Diagnostics
